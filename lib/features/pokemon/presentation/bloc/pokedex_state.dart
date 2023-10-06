@@ -1,7 +1,7 @@
 part of 'pokedex_bloc.dart';
 
 abstract class PokeDexState extends Equatable {
-  final List<PokeEntity>? pokemon;
+  final PokeEntity? pokemon;
   final String? error;
   const PokeDexState({this.pokemon,this.error});
 
@@ -14,7 +14,7 @@ class PokeLoading extends PokeDexState {
 }
 
 class PokeDone extends PokeDexState {
-  const PokeDone(List<PokeEntity> poke) : super(pokemon: poke);
+  const PokeDone(PokeEntity poke,String error) : super(pokemon: poke,error: error);
 }
 
 class PokeError extends PokeDexState {

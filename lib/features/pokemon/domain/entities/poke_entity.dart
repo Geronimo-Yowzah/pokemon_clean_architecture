@@ -1,7 +1,6 @@
 import 'package:clean_bloc_pokemon/features/pokemon/domain/entities/sub_entities.dart';
-import 'package:equatable/equatable.dart';
 
-class PokeEntity extends Equatable{
+class PokeEntity {
   final String name;
   final int id;
   final SpritesEntity sprites;
@@ -12,8 +11,4 @@ class PokeEntity extends Equatable{
     required this.sprites,
     required this.types,
   });
-
-  @override
-  List<Object?> get props => [name,id,sprites,types];
-
 }

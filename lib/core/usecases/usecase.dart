@@ -1,3 +1,3 @@
 abstract class UseCase<Type,Params> {
-  Future<Type> call({int id});
+  Future<Type> call({String keyword});
 }

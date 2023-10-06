@@ -13,7 +13,7 @@ class _PokeAPIService implements PokeAPIService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://pokeapi.co/api/v2';
+    baseUrl ??= 'https://pokeapi.co/api/v2/';
   }
 
   final Dio _dio;
@@ -21,20 +21,20 @@ class _PokeAPIService implements PokeAPIService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<PokeModel>>> getPoke(int id) async {
+  Future<HttpResponse<PokeModel>> getPoke(String keyword) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<HttpResponse<List<PokeModel>>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<PokeModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/pokemon/${id}',
+              'pokemon/${keyword}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -43,9 +43,7 @@ class _PokeAPIService implements PokeAPIService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    var value = _result.data!
-        .map((dynamic i) => PokeModel.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = PokeModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

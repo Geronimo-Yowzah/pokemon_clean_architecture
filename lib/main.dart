@@ -1,9 +1,11 @@
 import 'package:clean_bloc_pokemon/config/route/app_route.dart';
 import 'package:clean_bloc_pokemon/features/pokemon/presentation/bloc/pokedex_bloc.dart';
+import 'package:clean_bloc_pokemon/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
+  await initializeDependencies();
   runApp(const MyApp());
 }
 
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRoute = AppRoute();
     final searchPokemon =
-        BlocProvider<PokeDexBloc>(create: (context) => PokeDexBloc());
+        BlocProvider<PokeDexBloc>(create: (context) => PokeDexBloc(sl()));
 
     return MultiBlocProvider(
         providers: [searchPokemon],

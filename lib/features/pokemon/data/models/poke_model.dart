@@ -1,6 +1,6 @@
 import 'package:clean_bloc_pokemon/core/constants/constants.dart';
 import 'package:clean_bloc_pokemon/features/pokemon/data/models/sub_models.dart';
-import 'package:clean_bloc_pokemon/features/pokemon/domain/entities/poke.dart';
+import 'package:clean_bloc_pokemon/features/pokemon/domain/entities/poke_entity.dart';
 
 class PokeModel extends PokeEntity {
   const PokeModel({
@@ -32,7 +32,4 @@ class PokeModel extends PokeEntity {
       kTypes: types,
     };
   }
-
-
-
 }

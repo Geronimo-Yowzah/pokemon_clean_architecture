@@ -1,6 +1,6 @@
 import 'package:clean_bloc_pokemon/core/constants/constants.dart';
 import 'package:clean_bloc_pokemon/features/pokemon/domain/entities/sub_entities.dart';
-
+//! Sprites
 class SpritesModel extends SpritesEntity {
   const SpritesModel({
     required OtherModel other,
