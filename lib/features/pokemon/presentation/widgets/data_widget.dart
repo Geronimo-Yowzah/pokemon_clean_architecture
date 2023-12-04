@@ -3,9 +3,10 @@ import 'package:clean_bloc_pokemon/features/pokemon/presentation/widgets/poke_im
 import 'package:flutter/material.dart';
 
 class DataWidget extends StatefulWidget {
-  DataWidget({super.key, required this.pokemon});
+  DataWidget({super.key, required this.pokemon,required this.isShiny});
 
   PokeEntity pokemon;
+  bool isShiny;
 
   @override
   State<DataWidget> createState() => _DataWidget();
@@ -15,7 +16,7 @@ class _DataWidget extends State<DataWidget> {
   @override
   Widget build(BuildContext context) {
     return PokeImagesDataWidget(
-      picUrl: widget.pokemon.sprites.other.officialArtwork.frontDefault,
+      picUrl: !widget.isShiny ? widget.pokemon.sprites.other.officialArtwork.frontDefault : widget.pokemon.sprites.other.officialArtwork.frontShiny,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

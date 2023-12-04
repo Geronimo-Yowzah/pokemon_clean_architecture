@@ -15,6 +15,7 @@ class SearchPokemonPage extends StatefulWidget {
 
 class _MyHomePageState extends State<SearchPokemonPage> {
   TextEditingController _controller = TextEditingController();
+  bool isShiny = false;
 
   @override
   void initState() {
@@ -78,24 +79,43 @@ class _MyHomePageState extends State<SearchPokemonPage> {
                           controller: _controller,
                           decoration: InputDecoration(
                             hintText: 'Search Pokemon by Name or ID....',
+                            suffixIcon: IconButton(
+                              icon: const Icon(Icons.search),
+                              onPressed: () {
+                                context
+                                    .read<PokeDexBloc>()
+                                    .add(GetSearchPoke(_controller.text));
+                              },
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
                           ),
-                          onChanged: (query) {
-
-                          },
+                          onChanged: (query) {},
                         ),
                       ),
-                      IconButton(
-                        icon: const Icon(Icons.search),
-                        onPressed: () {
-                          context.read<PokeDexBloc>().add(GetSearchPoke(_controller.text));
-                        },
-                      ),
+
                     ],
                   ),
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      value: isShiny,
+                      activeColor: Colors.red,
+                      onChanged: (newBool) {
+                        setState(() {
+                          isShiny = newBool!;
+                        });
+                      },
+                    ),
+                const Text('Is Shiny'),
+                  ],
                 ),
                 Expanded(
                   child: DataWidget(
                     pokemon: data!,
+                    isShiny: isShiny,
                   ),
                 ),
               ],

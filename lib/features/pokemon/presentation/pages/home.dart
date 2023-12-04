@@ -29,9 +29,9 @@ class _MyHomePageState extends State<MyHomePage> {
         )),
       ),
       body: Center(
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             IconButton(
                 onPressed: () {
                   context.go('/search');
@@ -39,7 +39,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: const Icon(
                   Icons.folder_open,
                   size: 40,
-                ))
+                )),
+            IconButton(
+                onPressed: () {
+                  context.go('/barchart');
+                },
+                icon: const Icon(
+                  Icons.add_chart,
+                  size: 40,
+                )),
+            IconButton(
+                onPressed: () {
+                  context.go('/piechart');
+                },
+                icon: const Icon(
+                  Icons.pie_chart,
+                  size: 40,
+                )),
+            IconButton(
+                onPressed: () {
+                  context.go('/linechart');
+                },
+                icon: const Icon(
+                  Icons.stacked_line_chart,
+                  size: 40,
+                )),
           ],
         ),
       ),
